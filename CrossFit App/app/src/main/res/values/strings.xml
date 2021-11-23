@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">CrossFit App</string>
+    <string name="your_workouts">Your Workouts</string>
+    <string name="binacle">Binacle</string>
+    <string name="movement_guide">Movement Guide</string>
+    <string name="logo">logo</string>
+    <string name="empty"> </string>
+    <string name="Workouts">WORKOUTS</string>
+    <string name="AirSquat">Air Squat</string>
+    <string name="FrontSquat">Front Squat</string>
+    <string name="front_squat">Front Squad</string>
+    <string name="OverheadSquat">Overhead Squat</string>
+    <string name="ShoulderPress">Shoulder Press</string>
+    <string name="PushPress">Push Press</string>
+    <string name="PushJerk">Push Jerk</string>
+    <string name="DeadLift">Deadlift</string>
+    <string name="ExerciseVideo">exercise_video</string>
+    <string name="get_time">GET TIME</string>
+    <string name="hour_min">Hour : Min</string>
+    <string name="get_date">GET DATE</string>
+    <string name="date">Date</string>
+    <string name="comments">COMMENTS</string>
+    <string name="write_your_session_comments">Write your session comments</string>
+    <string name="submit">SUBMIT</string>
 </resources>

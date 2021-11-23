@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lavv.crossfitapp">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -9,6 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CrossFitApp">
+
+        
+        <activity
+            android:name=".ExerciseSelector"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity
+            android:name=".ExerciseViewer"
+            android:exported="true"
+            android:parentActivityName=".ExerciseSelector">
+        </activity>
+
+        <activity android:name=".BinnacleActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
