@@ -96,7 +96,7 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/comments"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -116,7 +116,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline24"
-        app:layout_constraintVertical_bias="0.0"
         tools:targetApi="o" />
 
     <TextView
@@ -185,7 +184,7 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Submit"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/submit"
@@ -196,6 +195,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"

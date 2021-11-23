@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         setupFullScreen();
+        setContentView(binding.getRoot());
+
 
         binding.movementGuide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +49,17 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupFullScreen();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setupFullScreen();
     }
 }
