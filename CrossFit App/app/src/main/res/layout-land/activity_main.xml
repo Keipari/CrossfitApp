@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/portrait"
+    android:background="@drawable/landscape"
     tools:context=".MainActivity" >
 
     <ImageView
@@ -12,13 +12,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center|center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.175"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/logo"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintWidth_percent="0.3"
         app:srcCompat="@drawable/crossfit_app_logos_white" />
 
     <Button
@@ -26,71 +27,72 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center|center_vertical"
-        android:backgroundTint="#6A6A6A"
-        android:text="Binacle"
         android:autoSizeTextType="uniform"
+        android:backgroundTint="#6A6A6A"
+        android:text="@string/binacle"
         app:cornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHeight_percent="0.10"
-        tools:targetApi="o"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintWidth_percent="0.25"
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/userWorkouts"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center|center_vertical"
-        android:backgroundTint="#6A6A6A"
-        android:text="Your Workouts"
-        app:cornerRadius="15dp"
         android:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.10"
+        android:backgroundTint="#6A6A6A"
+        android:text="@string/your_workouts"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintWidth_percent="0.3"
         tools:targetApi="o" />
 
     <Button
         android:id="@+id/movementGuide"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="#6A6A6A"
-        android:text="Movement Guide"
-        app:cornerRadius="15dp"
         android:autoSizeTextType="uniform"
+        android:backgroundTint="#6A6A6A"
+        android:text="@string/movement_guide"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.10"
-        tools:targetApi="o"/>
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintWidth_percent="0.3"
+        tools:targetApi="o" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.46" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
