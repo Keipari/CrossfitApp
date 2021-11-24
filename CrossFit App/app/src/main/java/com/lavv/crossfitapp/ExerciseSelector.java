@@ -64,6 +64,11 @@ public class ExerciseSelector extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.goToMainMenu.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     private void setupFullScreen() {

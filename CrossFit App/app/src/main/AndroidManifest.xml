@@ -13,7 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrossFitApp">
 
-        
+        <activity android:name=".BinnacleShowActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity
+            android:name=".DataShowActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
         <activity
             android:name=".ExerciseSelector"
             android:exported="true"
@@ -26,7 +36,8 @@
             android:parentActivityName=".ExerciseSelector">
         </activity>
 
-        <activity android:name=".BinnacleActivity"
+        <activity
+            android:name=".BinnacleActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
         </activity>

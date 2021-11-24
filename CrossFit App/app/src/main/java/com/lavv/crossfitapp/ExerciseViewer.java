@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -42,29 +43,34 @@ public class ExerciseViewer extends AppCompatActivity {
         youTubePlayerView.addYouTubePlayerListener(videoListener);
         youTubePlayerView.addFullScreenListener(fullScreenListener);
 
-    }
+        binding.goToMainMenu.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        });
+        binding.toMovementList.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), ExerciseSelector.class);
+            startActivity(intent);
+        });
 
+    }
 
     YouTubePlayerFullScreenListener fullScreenListener = new YouTubePlayerFullScreenListener() {
         @Override
         public void onYouTubePlayerEnterFullScreen() {
-
+            YouTubePlayerView youtube = binding.ExerciseVideo;
+            binding.videoContainer.removeViewInLayout(youtube);
+            binding.getRoot().addView(youtube);
+            binding.toMovementList.setVisibility(View.INVISIBLE);
         }
 
         @Override
         public void onYouTubePlayerExitFullScreen() {
-            //ConstraintLayout constraintLayout = binding.getRoot();
-            //ConstraintSet constraintSet = new ConstraintSet();
-            //constraintSet.clone(constraintLayout);
-            //constraintSet.connect(binding.ExerciseVideo.getId(),ConstraintSet.END,binding.guideline21.getId(), ConstraintSet.END,0);
-            //constraintSet.connect(binding.ExerciseVideo.getId(),ConstraintSet.TOP,binding.guideline16.getId(),ConstraintSet.TOP,0);
-            //constraintSet.connect(binding.ExerciseVideo.getId(),ConstraintSet.BOTTOM,binding.guideline14.getId(),ConstraintSet.TOP,0);
-            //constraintSet.connect(binding.ExerciseVideo.getId(),ConstraintSet.START,binding.guideline20.getId(),ConstraintSet.START,0);
-            //constraintSet.applyTo(constraintLayout);
+            YouTubePlayerView youtube = binding.ExerciseVideo;
+            binding.getRoot().removeViewInLayout(youtube);
+            binding.videoContainer.addView(youtube);
+            binding.toMovementList.setVisibility(View.VISIBLE);
         }
     };
-
-
 
     AbstractYouTubePlayerListener videoListener = new AbstractYouTubePlayerListener(){
         @Override

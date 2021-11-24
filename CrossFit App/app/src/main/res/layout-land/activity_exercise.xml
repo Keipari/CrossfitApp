@@ -19,6 +19,60 @@
         app:layout_constraintWidth_percent="0.35"
         app:srcCompat="@drawable/crossfit_app_logos_white" />
 
+    <LinearLayout
+        android:id="@+id/videoContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline20"
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/ExerciseVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/ExerciseVideo"
+            app:autoPlay="true"
+            app:showFullScreenButton="true"
+            app:showYouTubeButton="true"
+            app:videoId="@string/empty">
+
+        </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/goToMainMenu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/home_view"
+        android:contentDescription="@string/home_logo"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo_home" />
+
+    <Button
+        android:id="@+id/toMovementList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:autoSizeTextType="uniform"
+        android:paddingVertical="10dp"
+        android:text="@string/movement_list"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline21"
+        app:layout_constraintStart_toStartOf="@+id/guideline45"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="o" />
+
     <TextView
         android:id="@+id/ExerciseTitle"
         android:layout_width="0dp"
@@ -32,38 +86,23 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline16" />
+        app:layout_constraintTop_toTopOf="@+id/guideline16"
+        tools:targetApi="o" />
 
     <TextView
         android:id="@+id/Description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="15dp"
+        android:padding="10dp"
         android:text="@string/empty"
         android:textAlignment="center"
-        android:gravity="center"
-        android:padding="10dp"
+        android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline19" />
-
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/ExerciseVideo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/ExerciseVideo"
-        android:layout_marginTop="20dp"
-        app:autoPlay="true"
-        app:showYouTubeButton="false"
-        app:layout_constraintBottom_toBottomOf="@id/guideline14"
-        app:layout_constraintEnd_toEndOf="@id/guideline21"
-        app:layout_constraintStart_toStartOf="@+id/guideline20"
-        app:layout_constraintTop_toTopOf="@+id/guideline16"
-        app:showFullScreenButton="false"
-        app:videoId="@string/empty">
-
-    </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+        app:layout_constraintTop_toTopOf="@+id/guideline19"
+        tools:targetApi="o" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
@@ -99,6 +138,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/Home"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/logo_view"
@@ -33,36 +33,70 @@
         app:layout_constraintTop_toTopOf="@id/guideline17"
         tools:targetApi="o" />
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/ExerciseVideo"
+    <LinearLayout
+        android:id="@+id/videoContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/ExerciseVideo"
-        app:autoPlay="true"
-        app:showYouTubeButton="false"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toEndOf="@id/guideline21"
-        app:layout_constraintStart_toStartOf="@id/guideline20"
-        app:layout_constraintTop_toTopOf="@+id/guideline16"
-        app:showFullScreenButton="false"
-        app:videoId="@string/empty">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline16">
 
-    </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/ExerciseVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/ExerciseVideo"
+            app:autoPlay="true"
+            app:showFullScreenButton="true"
+            app:showYouTubeButton="true"
+            app:videoId="@string/empty">
+
+        </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/Description"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/empty"
-        android:padding="10dp"
         android:autoSizeTextType="uniform"
-        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="@string/empty"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline14"
         tools:targetApi="o" />
+
+    <Button
+        android:id="@+id/toMovementList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:autoSizeTextType="uniform"
+        android:paddingVertical="10dp"
+        android:text="@string/movement_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline44"
+        app:layout_constraintTop_toTopOf="@+id/guideline43"
+        tools:targetApi="o" />
+
+    <ImageView
+        android:id="@+id/goToMainMenu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/home_view"
+        android:contentDescription="@string/home_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline43"
+        app:srcCompat="@drawable/logo_home" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
@@ -86,17 +120,17 @@
         app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline20"
+        android:id="@+id/guideline43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline21"
+        android:id="@+id/guideline44"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="1" />
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

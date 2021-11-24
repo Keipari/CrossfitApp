@@ -23,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
         setupFullScreen();
         setContentView(binding.getRoot());
 
+        binding.userWorkouts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DataShowActivity.class);
+                startActivity(intent);
+            }
+        });
 
         binding.movementGuide.setOnClickListener(new View.OnClickListener() {
             @Override

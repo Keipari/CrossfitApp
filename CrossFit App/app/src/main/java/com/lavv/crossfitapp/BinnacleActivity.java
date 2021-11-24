@@ -3,6 +3,7 @@ package com.lavv.crossfitapp;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,24 +48,32 @@ public class BinnacleActivity extends AppCompatActivity {
                 if(nYear == ACTUAL_YEAR){
                     if(nMonth == ACTUAL_MONTH){
                         if(nDay <= ACTUAL_DAY){
-                            Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         if (nMonth < ACTUAL_MONTH){
-                            Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }else{
                     if(nYear < ACTUAL_YEAR){
-                        Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        binding.Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
