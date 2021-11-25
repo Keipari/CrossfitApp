@@ -45,26 +45,31 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nYear == ACTUAL_YEAR){
-                    if(nMonth == ACTUAL_MONTH){
-                        if(nDay <= ACTUAL_DAY){
-                            //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        if (nMonth < ACTUAL_MONTH){
-                            //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
+                if(nYear == ACTUAL_YEAR && nMonth == ACTUAL_MONTH && nDay <= ACTUAL_DAY) {
+                    //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
+                    String date_s=String.valueOf(nYear)+"-"+String.valueOf(nMonth+1)+"-"+String.valueOf(nDay)+" "+String.valueOf(nHour)+":"+String.valueOf(nMinute)+":00";
+                    String movements="";
+                    for( int i=0;i<checkExercises.length;i++){
+                        Log.i("data",String.valueOf(checkExercises[i]));
+                        if(checkExercises[i]==true){
+                            movements=movements+String.valueOf(i+1)+",";
                         }
                     }
+                    Session sessionModel;
+                    try{
+                        sessionModel= new Session(-1, date_s, comments,movements);
+
+                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(),"Error creating session",Toast.LENGTH_SHORT).show();
+                        sessionModel= new Session(-1, "YYYY-MM-DD HH:MM:SS", "comments dummy","No movements");
+                    }
+
+                    DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
+                    boolean response= dataBaseHelper.addSession(sessionModel);
+                    Toast.makeText(getApplicationContext(),"Success="+response,Toast.LENGTH_SHORT).show();
+
                 }else{
-                    if(nYear < ACTUAL_YEAR){
-                        //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                 }
             }
         });

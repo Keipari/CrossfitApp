@@ -4,11 +4,21 @@ public class Session {
     private int id;
     private String date_session;
     private String comment;
+    private String movements;
 
-    public Session(int id, String date_session, String comment) {
+    public Session(int id, String date_session, String comment, String movements) {
         this.id = id;
         this.date_session = date_session;
         this.comment = comment;
+        this.movements = movements;
+    }
+
+    public String getMovements() {
+        return movements;
+    }
+
+    public void setMovements(String movements) {
+        this.movements = movements;
     }
 
     public int getId() {

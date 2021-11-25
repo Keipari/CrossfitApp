@@ -17,49 +17,45 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //first time
+    //This method is used to create the database, it is only called the first time the database is accessed
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableMotion =
-                "CREATE TABLE IF NOT EXISTS MOTION (" +
-                        "ID_MOTION INTEGER PRIMARY KEY," +
-                        "NAME VARCHAR(25) NOT NULL," +
-                        "INFO TEXT NOT NULL );";
+
 
         String createTableSession = "" +
                 "CREATE TABLE IF NOT EXISTS SESSION (" +
                     "ID_SESSION INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "DATE_SESSION DATETIME NOT NULL, " +
-                    "COMMENT TEXT NOT NULL);";
+                    "COMMENT TEXT NOT NULL," +
+                    "MOVEMENTS TEXT NOT NULL);";
 
-        db.execSQL(createTableMotion);
         db.execSQL(createTableSession);
 
-        String createTableSessionMotion =
-                "CREATE TABLE IF NOT EXISTS SESSIONMOTION (" +
-                        "ID_SESSION INTEGER, " +
-                        "ID_MOTION INTEGER," +
-                        "FOREIGN KEY (ID_SESSION) REFERENCES SESSION (ID_SESSION)," +
-                        "FOREIGN KEY (ID_MOTION) REFERENCES SESSION (ID_MOTION));";
-
-        db.execSQL(createTableSessionMotion);
-
-        String createMotion = "INSERT INTO MOTION (ID_MOTION, NAME)" +
-                "VALUES" +
-                "(1, \"Air Squat\")," +
-                "(2, \"Front Squat\")," +
-                "(3, \"Overhead Squat\")," +
-                "(4, \"Shoulder Press\")," +
-                "(5, \"Push Press\")," +
-                "(6, \"Push Jerk\")," +
-                "(7, \"Deadlift\");";
-
-        db.execSQL(createMotion);
     }
 
     //update a database
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) { }
+
+
+
+    public boolean addSession(Session session){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("DATE_SESSION", session.getDate_session());
+        cv.put("COMMENT", session.getComment());
+        cv.put("MOVEMENTS", session.getMovements());
+
+        long insert = db.insert("SESSION",null,cv);
+
+        if( insert==-1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 
     public void insertTable(SQLiteDatabase db, String table, String value){
         //db.insert(table, "" , "");
