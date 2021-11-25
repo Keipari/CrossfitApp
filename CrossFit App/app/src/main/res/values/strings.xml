@@ -44,4 +44,9 @@
     <string name="home_logo">home_logo</string>
     <string name="return_to_exercises">return to Exercises</string>
     <string name="movement_list">Movement List</string>
+    <string name="time">Time</string>
+    <string name="Exercises">Exercises</string>
+    <string name="aqu_se_ponen_los_ejercicios_hechos">aquí se ponen los ejercicios hechos</string>
+    <string name="commentsMin">Comments</string>
+    <string name="return_to_all_entries">Return to all entries</string>
 </resources>

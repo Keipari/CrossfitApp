@@ -29,6 +29,8 @@
         android:layout_gravity="center|center_vertical"
         android:autoSizeTextType="uniform"
         android:backgroundTint="#6A6A6A"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/binacle"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +38,7 @@
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline8"
-        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintWidth_percent="0.3"
         tools:targetApi="o" />
 
     <Button
@@ -46,11 +48,13 @@
         android:layout_gravity="center|center_vertical"
         android:autoSizeTextType="uniform"
         android:backgroundTint="#6A6A6A"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/your_workouts"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHeight_percent="0.14"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline8"
         app:layout_constraintWidth_percent="0.3"

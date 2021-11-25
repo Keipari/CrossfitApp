@@ -36,14 +36,15 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
                 android:layout_weight="1"
+                android:autoSizeMaxTextSize="56dp"
+                android:autoSizeMinTextSize="12dp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center|center_vertical"
                 android:text="@string/Workouts"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textSize="50sp"
+                android:textSize="36sp"
                 tools:targetApi="o" />
 
             <LinearLayout
@@ -193,7 +194,6 @@
         android:id="@+id/goToMainMenu"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
         android:background="@drawable/home_view"
         android:contentDescription="@string/home_logo"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,6 +201,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline42"
         app:layout_constraintWidth_percent="0.375"
+        app:layout_constraintHeight_percent="0.08"
         app:srcCompat="@drawable/logo_home" />
 
     <androidx.constraintlayout.widget.Guideline

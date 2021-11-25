@@ -41,7 +41,6 @@
                 android:layout_gravity="center_vertical|center"
                 android:autoSizeTextType="uniform"
                 android:text="@string/binnacle"
-
                 android:textAlignment="center"
                 tools:targetApi="o" />
         </LinearLayout>

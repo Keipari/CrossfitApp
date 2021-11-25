@@ -8,28 +8,17 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lavv.crossfitapp.databinding.ActivityBinnacleshowBinding;
+import com.lavv.crossfitapp.databinding.ActivityDetailsBinding;
 
-public class BinnacleShowActivity extends AppCompatActivity {
-    private ActivityBinnacleshowBinding binding;
+public class SessionDetailsActivity extends AppCompatActivity {
+    private ActivityDetailsBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityBinnacleshowBinding.inflate(getLayoutInflater());
+        binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         setupFullScreen();
         setContentView(binding.getRoot());
-
-        //binding.entriesLayout.addView();
-
-        binding.Home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SessionDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,13 +29,12 @@ public class BinnacleShowActivity extends AppCompatActivity {
         binding.toAllEntries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DataShowActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BinnacleShowActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    //This method is used to set the app in fullscreen with no action or title bar from AndroidStudio
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(

@@ -81,7 +81,7 @@ public class BinnacleActivity extends AppCompatActivity {
         });
 
         /*
-        This botton helps the user to return to the Main Menu
+        This button helps the user to return to the Main Menu
          */
         binding.Home.setOnClickListener(new View.OnClickListener() {
             @Override

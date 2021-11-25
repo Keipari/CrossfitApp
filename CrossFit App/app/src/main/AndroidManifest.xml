@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrossFitApp">
 
+        <activity
+            android:name=".SessionDetailsActivity"
+            android:exported="true"
+            android:parentActivityName=".BinnacleShowActivity">
+        </activity>
+
         <activity android:name=".BinnacleShowActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
