@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class FrontSquat extends Exercise{
 
+    /*
+    This class has all the information about the Front Squat Exercise called in the ExerciseViewer class
+    */
+
     FrontSquat(){
         this.description = "The front squat builds exactly on the mechanics of the air squat. All " +
                 "that is added is a load supported in the front-rack position, where the weight " +

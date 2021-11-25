@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class ShoulderPress extends Exercise{
 
+    /*
+    This class has all the information about the Shoulder Press Exercise called in the ExerciseViewer class
+    */
+
     ShoulderPress(){
         this.description = "Never is the stabilizing role of the abdominals more critical than " +
                 "when attempting to drive loads overhead. We train our athletes to think of every " +

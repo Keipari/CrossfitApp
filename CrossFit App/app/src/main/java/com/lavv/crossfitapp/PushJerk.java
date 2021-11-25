@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class PushJerk extends Exercise{
 
+    /*
+    This class has all the information about the Push Jerk Exercise called in the ExerciseViewer class
+    */
+
     PushJerk(){
         this.description = "With the push jerk, you will be able to move overhead as much as 30 " +
                 "percent more weight than with the push press. Similar to the push press, the push " +

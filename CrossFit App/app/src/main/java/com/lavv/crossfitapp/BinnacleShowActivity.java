@@ -38,6 +38,7 @@ public class BinnacleShowActivity extends AppCompatActivity {
         });
     }
 
+    //This method is used to set the app in fullscreen with no action or title bar from AndroidStudio
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(

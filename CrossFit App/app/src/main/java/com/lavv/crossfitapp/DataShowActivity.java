@@ -26,6 +26,8 @@ public class DataShowActivity extends AppCompatActivity {
         setupFullScreen();
         setContentView(binding.getRoot());
 
+
+        //With this we return to the Main Menu Activity
         binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +35,8 @@ public class DataShowActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //With this we can access to the activity with all the entries of the DB
         binding.toAllEntries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +52,7 @@ public class DataShowActivity extends AppCompatActivity {
         //Con este método obtienes el valor en string del objeto: binding.spinnerExercise.getSelectedItem().toString());
         //Con este método obtienes la posicion en el arreglo de string del item: binding.spinnerExercise.getSelectedItemId()
 
+        //Here we correct the behaviour of the spinner item selector in front of screen by calling again the setupFullScreen() method
         binding.spinnerExercise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -64,6 +69,8 @@ public class DataShowActivity extends AppCompatActivity {
                 setupFullScreen();
             }
         });
+
+        //Here we correct the behaviour of the spinner item selection in front of screen by calling again the setupFullScreen() method
         binding.SpinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -81,6 +88,8 @@ public class DataShowActivity extends AppCompatActivity {
 
     }
 
+
+    //This method is used to set the app in fullscreen with no action or title bar from AndroidStudio
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(

@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class OverheadSquat extends Exercise{
 
+    /*
+    This class has all the information about the Overhead Squat Exercise called in the ExerciseViewer class
+    */
+
     OverheadSquat(){
         this.description = "The overhead squat is the ultimate core exercise and peerless in " +
                 "developing effective athletic movement. This functional gem trains for efficient " +

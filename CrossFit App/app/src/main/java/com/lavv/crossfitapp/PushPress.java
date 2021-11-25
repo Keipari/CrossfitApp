@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class PushPress extends Exercise{
 
+    /*
+    This class has all the information about the Push Press Exercise called in the ExerciseViewer class
+    */
+
     PushPress(){
         this.description = "In the push press, the core-to-extremity principle is obvious as the " +
                 "muscles of the power zone — including the hip flexors, hip extensors " +

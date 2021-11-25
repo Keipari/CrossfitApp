@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class AirSquat extends Exercise{
 
+    /*
+    This class has all the information about the Air Squat Exercise called in the ExerciseViewer class
+    */
+
     AirSquat(){
         this.description = "The squat is a beautiful, natural movement. It demands midline " +
                 "stabilization, posterior-chain engagement and core-to-extremity movement, and it " +

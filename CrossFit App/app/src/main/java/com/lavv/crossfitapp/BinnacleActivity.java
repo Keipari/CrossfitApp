@@ -42,6 +42,12 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.actualD.setText(ACTUAL_DAY + "/" + (ACTUAL_MONTH + 1) + "/" + ACTUAL_YEAR);
         initializeBaseValues(savedInstanceState);
 
+
+        /*
+        Here we make the validation of a not later date than the actual one and after that we
+        send to the Database
+        */
+
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +80,9 @@ public class BinnacleActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        This botton helps the user to return to the Main Menu
+         */
         binding.Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +90,7 @@ public class BinnacleActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         binding.AirSquatCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,6 +260,11 @@ public class BinnacleActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
+
+    /*
+    This sets the booleans in the checkExercises Boolean Array to true of false if the checkbox
+    that matches with the specified exercise is checked or not
+    */
     @SuppressLint("NonConstantResourceId")
     private void setBooleanChecked(int id){
         switch(id){
@@ -284,6 +299,10 @@ public class BinnacleActivity extends AppCompatActivity {
         }
 
     }
+
+    /*
+    with this onSaveInstanceState
+     */
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

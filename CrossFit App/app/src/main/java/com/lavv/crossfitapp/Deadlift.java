@@ -2,6 +2,10 @@ package com.lavv.crossfitapp;
 
 public class Deadlift extends Exercise{
 
+    /*
+    This class has all the information about the Deadlift Exercise called in the ExerciseViewer class
+    */
+
     Deadlift(){
         this.description = "The deadlift, being no more than the safe and sound approach by " +
                 "which any object should be lifted from the ground, keeps company with standing, " +
