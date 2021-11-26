@@ -18,6 +18,17 @@ public class SessionDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         setupFullScreen();
+
+        Intent intent = getIntent();
+
+        binding.setComments.setText(intent.getStringExtra("comments"));
+
+        binding.setExercises.setText(intent.getStringExtra("movements"));
+
+        binding.textdate.setText(intent.getStringExtra("date"));
+
+        binding.texttime.setText(intent.getStringExtra("time"));
+
         setContentView(binding.getRoot());
         binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override

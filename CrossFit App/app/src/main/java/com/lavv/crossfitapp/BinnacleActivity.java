@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.lavv.crossfitapp.DB.Db;
+import com.lavv.crossfitapp.DB.appDbClient;
 import com.lavv.crossfitapp.databinding.ActivityBinnacleBinding;
 import java.util.Calendar;
 
@@ -28,7 +31,7 @@ public class BinnacleActivity extends AppCompatActivity {
     private final int ACTUAL_HOUR = calendar.get(Calendar.HOUR_OF_DAY), ACTUAL_MINUTE = calendar.get(Calendar.MINUTE);
     private final int ACTUAL_DAY = calendar.get(Calendar.DAY_OF_MONTH), ACTUAL_MONTH = calendar.get(Calendar.MONTH), ACTUAL_YEAR = calendar.get(Calendar.YEAR);
     private int nHour, nMinute, nDay, nMonth, nYear;
-    private String comments;
+    private String comments = "";
     private boolean[] checkExercises;
 
     @Override
@@ -45,45 +48,54 @@ public class BinnacleActivity extends AppCompatActivity {
 
         /*
         Here we make the validation of a not later date than the actual one and after that we
-        send to the Database
+        send the entry to the Database
         */
 
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nYear == ACTUAL_YEAR && nMonth == ACTUAL_MONTH && nDay <= ACTUAL_DAY) {
-                    //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
-                    String date_s=String.valueOf(nYear)+"-"+String.valueOf(nMonth+1)+"-"+String.valueOf(nDay)+" "+String.valueOf(nHour)+":"+String.valueOf(nMinute)+":00";
-                    String movements="";
-                    for( int i=0;i<checkExercises.length;i++){
-                        Log.i("data",String.valueOf(checkExercises[i]));
-                        if(checkExercises[i]==true){
-                            movements=movements+String.valueOf(i+1)+",";
+                int j = 0;
+                if(comments.isEmpty()){
+                    comments = "No Comments";
+                }
+                for(int i = 0; i < checkExercises.length; i++){
+                    if(checkExercises[j] == false){
+                        j++;
+                    }else{
+                        break;
+                    }
+                }
+                if(j == 7){
+                    Toast.makeText(getApplicationContext(), "Check at least one exercise", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(nYear == ACTUAL_YEAR) {
+                        if(nMonth == ACTUAL_MONTH){
+                            if(nDay <= ACTUAL_DAY){
+                                insertDb();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
+                            }
+                        }if(nMonth < ACTUAL_MONTH){
+                            insertDb();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        if(nYear < ACTUAL_YEAR){
+                            insertDb();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    Session sessionModel;
-                    try{
-                        sessionModel= new Session(-1, date_s, comments,movements);
-
-                    }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),"Error creating session",Toast.LENGTH_SHORT).show();
-                        sessionModel= new Session(-1, "YYYY-MM-DD HH:MM:SS", "comments dummy","No movements");
-                    }
-
-                    DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
-                    boolean response= dataBaseHelper.addSession(sessionModel);
-                    Toast.makeText(getApplicationContext(),"Success="+response,Toast.LENGTH_SHORT).show();
-
-                }else{
-                    Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
         /*
         This button helps the user to return to the Main Menu
          */
-        binding.Home.setOnClickListener(new View.OnClickListener() {
+        binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -217,6 +229,37 @@ public class BinnacleActivity extends AppCompatActivity {
                 datePicker.show();
             }
         });
+    }
+
+    private void insertDb(){
+        class InsertDb extends AsyncTask<Void, Void, Void> {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Db database = new Db();
+                database.setFecha(binding.actualD.getText().toString());
+                database.setHora(binding.Time.getText().toString());
+                database.setAct1(checkExercises[0]);
+                database.setAct2(checkExercises[1]);
+                database.setAct3(checkExercises[2]);
+                database.setAct4(checkExercises[3]);
+                database.setAct5(checkExercises[4]);
+                database.setAct6(checkExercises[5]);
+                database.setAct7(checkExercises[6]);
+                database.setComment(comments);
+                appDbClient.getInstance(getApplicationContext()).getAppDatabase().test().insert(database);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid){
+                super.onPostExecute(aVoid);
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+            }
+        }
+        InsertDb Idb = new InsertDb();
+        Idb.execute();
     }
 
     @SuppressLint("SetTextI18n")
