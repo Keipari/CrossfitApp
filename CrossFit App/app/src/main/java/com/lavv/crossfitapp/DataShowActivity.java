@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class DataShowActivity extends AppCompatActivity {
     private ActivityDatashowBinding binding;
-    private HashMap<String,String> sessionInfo= new HashMap<>();
+
     private String month=" ",movement=" ";
 
     @Override
@@ -94,6 +94,8 @@ public class DataShowActivity extends AppCompatActivity {
     }
 
     public void fillLayout(List<Session> sessions){
+        HashMap<String,String> sessionInfo= new HashMap<>();
+
         for (int i=0;i<sessions.size();i++){
             sessionInfo.put("Workout "+String.valueOf(sessions.get(i).getId()),sessions.get(i).getDate_session()+"\n"+sessions.get(i).getMovements());
         }

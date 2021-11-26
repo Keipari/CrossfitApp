@@ -59,44 +59,34 @@
         tools:ignore="TouchTargetSizeCheck"
         tools:targetApi="o" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/show_entries"
-        app:layout_constraintHeight_percent="0.525"
-        app:layout_constraintWidth_percent="0.95"
-        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical|center"
+        android:autoSizeTextType="uniform"
+        android:text="@string/binnacle"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline38">
+        app:layout_constraintTop_toBottomOf="@+id/GetEntries"
+        tools:targetApi="o" />
 
-        <LinearLayout
-            android:id="@+id/entriesLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/count"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical|center"
-                android:autoSizeTextType="uniform"
-                android:text="@string/binnacle"
-                android:textAlignment="center"
-                tools:targetApi="o" />
-
-            <ListView
-                android:id="@+id/listsessions"
-                android:layout_width="match_parent"
-                android:layout_height="364dp" />
-        </LinearLayout>
-    </ScrollView>
+    <ListView
+        android:id="@+id/listsessions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/goToMainMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/count" />
 
     <ImageView
         android:id="@+id/goToMainMenu"
         android:layout_width="92dp"
         android:layout_height="56dp"
+        android:layout_marginTop="8dp"
         android:background="@color/black"
         android:contentDescription="@string/home_logo"
         app:layout_constraintBottom_toBottomOf="parent"

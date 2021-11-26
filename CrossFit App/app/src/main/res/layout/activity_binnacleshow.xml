@@ -17,39 +17,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/crossfit_app_logos_white" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:contentDescription="@string/show_entries"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical|center"
+        android:autoSizeTextType="uniform"
+        android:text="@string/binnacle"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline36">
+        app:layout_constraintTop_toBottomOf="@+id/Home"
+        tools:targetApi="o" />
 
-        <LinearLayout
-            android:id="@+id/entriesLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/count"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical|center"
-                android:autoSizeTextType="uniform"
-                android:text="@string/binnacle"
-                android:textAlignment="center"
-                tools:targetApi="o" />
-
-            <ListView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="433dp" />
-        </LinearLayout>
-    </ScrollView>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/goToMainMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/count" />
 
     <ImageView
         android:id="@+id/goToMainMenu"
