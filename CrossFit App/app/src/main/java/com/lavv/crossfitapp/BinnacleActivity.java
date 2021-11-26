@@ -30,6 +30,7 @@ public class BinnacleActivity extends AppCompatActivity {
     private int nHour, nMinute, nDay, nMonth, nYear;
     private String comments;
     private boolean[] checkExercises;
+    private String  movements_strigs[]={"Air Squat","Front Squat","Overhead Squat","Shoulder Press","Push Press","Push Jerk","Deadlift"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.actualD.setText(ACTUAL_DAY + "/" + (ACTUAL_MONTH + 1) + "/" + ACTUAL_YEAR);
         initializeBaseValues(savedInstanceState);
 
-
         /*
         Here we make the validation of a not later date than the actual one and after that we
         send to the Database
@@ -51,14 +51,14 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nYear == ACTUAL_YEAR && nMonth == ACTUAL_MONTH && nDay <= ACTUAL_DAY) {
+                if((nYear <= ACTUAL_YEAR && nMonth <= ACTUAL_MONTH && nDay <= ACTUAL_DAY)||(nYear <= ACTUAL_YEAR && nMonth < ACTUAL_MONTH)||(nYear < ACTUAL_YEAR)) {
                     //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
                     String date_s=String.valueOf(nYear)+"-"+String.valueOf(nMonth+1)+"-"+String.valueOf(nDay)+" "+String.valueOf(nHour)+":"+String.valueOf(nMinute)+":00";
                     String movements="";
                     for( int i=0;i<checkExercises.length;i++){
                         Log.i("data",String.valueOf(checkExercises[i]));
                         if(checkExercises[i]==true){
-                            movements=movements+String.valueOf(i+1)+",";
+                            movements=movements+movements_strigs[i]+",";
                         }
                     }
                     Session sessionModel;

@@ -43,18 +43,20 @@
 
     <Button
         android:id="@+id/GetEntries"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="138dp"
+        android:layout_height="39dp"
         android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/black"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/get_entries"
-        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintBottom_toTopOf="@+id/guideline38"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline37"
         app:layout_constraintWidth_percent="0.4"
+        tools:ignore="TouchTargetSizeCheck"
         tools:targetApi="o" />
 
     <ScrollView
@@ -75,7 +77,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/count"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical|center"
@@ -83,38 +85,27 @@
                 android:text="@string/binnacle"
                 android:textAlignment="center"
                 tools:targetApi="o" />
+
+            <ListView
+                android:id="@+id/listsessions"
+                android:layout_width="match_parent"
+                android:layout_height="364dp" />
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/toAllEntries"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:autoSizeTextType="uniform"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/go_to_all_entries"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline40"
-        app:layout_constraintTop_toTopOf="@+id/guideline39"
-        tools:targetApi="o" />
-
     <ImageView
         android:id="@+id/goToMainMenu"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/home_view"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.3"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:background="@color/black"
+        android:contentDescription="@string/home_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline40"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline39"
-        app:srcCompat="@drawable/logo_home"
-        android:contentDescription="@string/home_logo" />
+        app:layout_constraintWidth_percent="0.3"
+        app:srcCompat="@drawable/logo_home" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline35"

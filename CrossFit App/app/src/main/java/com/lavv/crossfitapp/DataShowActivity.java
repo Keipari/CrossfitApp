@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,8 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lavv.crossfitapp.databinding.ActivityDatashowBinding;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 public class DataShowActivity extends AppCompatActivity {
     private ActivityDatashowBinding binding;
+    private HashMap<String,String> sessionInfo= new HashMap<>();
+    private String month=" ",movement=" ";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +34,6 @@ public class DataShowActivity extends AppCompatActivity {
         binding = ActivityDatashowBinding.inflate(getLayoutInflater());
         setupFullScreen();
         setContentView(binding.getRoot());
-
 
         //With this we return to the Main Menu Activity
         binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
@@ -36,34 +44,14 @@ public class DataShowActivity extends AppCompatActivity {
             }
         });
 
-        //With this we can access to the activity with all the entries of the DB
-        binding.toAllEntries.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BinnacleShowActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        //Con est se añaden los nuevos datos en forma de TextView/Button/X al LinearLayout del ScrollView
-        //binding.entriesLayout.addView(prueba);
-
-        //Con este método obtienes el valor en string del objeto: binding.spinnerExercise.getSelectedItem().toString());
-        //Con este método obtienes la posicion en el arreglo de string del item: binding.spinnerExercise.getSelectedItemId()
-
         //Here we correct the behaviour of the spinner item selector in front of screen by calling again the setupFullScreen() method
         binding.spinnerExercise.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setupFullScreen();
-                Log.i("spinner Item", binding.spinnerExercise.getSelectedItem().toString());
-                Log.i("spinner Item", binding.spinnerExercise.getSelectedItemId() + "");
-                //((TextView) (adapterView.getChildAt(0))).setAutoSizeTextTypeUniformWithConfiguration(10, 48, 1, TypedValue.COMPLEX_UNIT_DIP);
+                movement= binding.spinnerExercise.getSelectedItem().toString();
             }
-
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 setupFullScreen();
@@ -76,7 +64,7 @@ public class DataShowActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setupFullScreen();
-                //((TextView) (adapterView.getChildAt(0))).setAutoSizeTextTypeUniformWithConfiguration(10, 48, 1, TypedValue.COMPLEX_UNIT_DIP);
+                month= String.valueOf(binding.SpinnerMonth.getSelectedItemId()+1);
             }
 
             @Override
@@ -85,9 +73,49 @@ public class DataShowActivity extends AppCompatActivity {
             }
         });
 
+        binding.GetEntries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (month!=" " && movement!=" "){
+
+                    DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
+                    List<Session> sessions = dataBaseHelper.getSessionsByMonthMovements(month,movement);
+                    int count = dataBaseHelper.getStatisticsCount(month,movement);
+                    binding.count.setText("Count: "+ String.valueOf(count));
+                    fillLayout(sessions);
+
+                }
+
+
+            }
+        });
+
 
     }
 
+    public void fillLayout(List<Session> sessions){
+        for (int i=0;i<sessions.size();i++){
+            sessionInfo.put("Workout "+String.valueOf(sessions.get(i).getId()),sessions.get(i).getDate_session()+"\n"+sessions.get(i).getMovements());
+        }
+
+        List<HashMap<String,String>> ListItems = new ArrayList<>();
+
+        SimpleAdapter adapter= new SimpleAdapter(getApplicationContext(),ListItems,R.layout.list_item_statistics,
+                new String[]{"First Line","Second Line"},
+                new int[]{R.id.id_session,R.id.date_and_movements});
+
+        Iterator it= sessionInfo.entrySet().iterator();
+
+        while (it.hasNext()){
+            HashMap<String,String> resultMap = new HashMap<>();
+            Map.Entry pair = (Map.Entry)it.next();
+            resultMap.put("First Line", pair.getKey().toString());
+            resultMap.put("Second Line", pair.getValue().toString());
+            ListItems.add(resultMap);
+        }
+
+        binding.listsessions.setAdapter(adapter);
+    }
 
     //This method is used to set the app in fullscreen with no action or title bar from AndroidStudio
     private void setupFullScreen() {

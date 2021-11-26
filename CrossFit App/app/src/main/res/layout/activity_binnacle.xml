@@ -42,16 +42,18 @@
 
     <Button
         android:id="@+id/getTime"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/get_time"
+        android:layout_width="109dp"
+        android:layout_height="46dp"
         android:autoSizeTextType="uniform"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.3"
+        android:backgroundTint="@color/black"
+        android:text="@string/get_time"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
         app:layout_constraintTop_toTopOf="@+id/guideline13"
+        app:layout_constraintWidth_percent="0.3"
+        tools:ignore="TouchTargetSizeCheck"
         tools:targetApi="o" />
 
     <EditText
@@ -78,16 +80,18 @@
 
     <Button
         android:id="@+id/getDate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/get_date"
+        android:layout_width="109dp"
+        android:layout_height="46dp"
         android:autoSizeTextType="uniform"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.3"
+        android:backgroundTint="@color/black"
+        android:text="@string/get_date"
         app:layout_constraintBottom_toTopOf="@+id/guideline22"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
         app:layout_constraintTop_toTopOf="@+id/guideline18"
+        app:layout_constraintWidth_percent="0.3"
+        tools:ignore="TouchTargetSizeCheck"
         tools:targetApi="o" />
 
     <EditText
@@ -236,9 +240,9 @@
 
     <ImageView
         android:id="@+id/goToMainMenu"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/home_view"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:background="@color/black"
         android:contentDescription="@string/home_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -253,6 +257,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/black"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline23"

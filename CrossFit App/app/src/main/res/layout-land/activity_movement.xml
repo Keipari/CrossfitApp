@@ -28,16 +28,16 @@
 
         <ImageView
             android:id="@+id/goToMainMenu"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/home_view"
+            android:layout_width="152dp"
+            android:layout_height="66dp"
+            android:background="@color/black"
             android:contentDescription="@string/home_logo"
-            app:layout_constraintHeight_percent="0.175"
-            app:layout_constraintWidth_percent="0.225"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintHeight_percent="0.175"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.225"
             app:srcCompat="@drawable/logo_home" />
 
         <TextView

@@ -42,6 +42,27 @@
         tools:targetApi="o" />
 
     <Button
+        android:id="@+id/statistics"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center|center_vertical"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="#6A6A6A"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/Statistics"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.243"
+        app:layout_constraintWidth_percent="0.3"
+        tools:targetApi="o" />
+
+    <Button
         android:id="@+id/userWorkouts"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -51,12 +72,15 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/your_workouts"
+        android:textColor="#FFFEFE"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/statistics"
+        app:layout_constraintVertical_bias="0.534"
         app:layout_constraintWidth_percent="0.3"
         tools:targetApi="o" />
 

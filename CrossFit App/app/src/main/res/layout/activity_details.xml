@@ -44,10 +44,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline56"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline55"
         app:layout_constraintWidth_percent="0.95"
-        app:layout_constraintHeight_percent="0.2"
         tools:targetApi="o" />
 
     <TextView
@@ -136,29 +136,33 @@
 
     <ImageView
         android:id="@+id/goToMainMenu"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/home_view"
+        android:layout_width="117dp"
+        android:layout_height="45dp"
+        android:background="@color/black"
         android:contentDescription="@string/home_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline58"
         app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline59"
+        app:layout_constraintVertical_bias="0.607"
         app:layout_constraintWidth_percent="0.45"
         app:srcCompat="@drawable/logo_home" />
 
     <Button
         android:id="@+id/toAllEntries"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="143dp"
+        android:layout_height="51dp"
         android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/black"
         android:text="@string/return_to_all_entries"
-        app:layout_constraintWidth_percent="0.45"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="@+id/guideline58"
         app:layout_constraintTop_toTopOf="@+id/guideline59"
+        app:layout_constraintWidth_percent="0.45"
         tools:targetApi="o" />
 
     <androidx.constraintlayout.widget.Guideline
