@@ -20,6 +20,7 @@ import com.lavv.crossfitapp.databinding.ActivityDatashowBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +81,7 @@ public class DataShowActivity extends AppCompatActivity {
 
                     DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
                     List<Session> sessions = dataBaseHelper.getSessionsByMonthMovements(month,movement);
-                    int count = dataBaseHelper.getStatisticsCount(month,movement);
+                    int count = sessions.size();
                     binding.count.setText("Count: "+ String.valueOf(count));
                     fillLayout(sessions);
 
@@ -94,10 +95,13 @@ public class DataShowActivity extends AppCompatActivity {
     }
 
     public void fillLayout(List<Session> sessions){
-        HashMap<String,String> sessionInfo= new HashMap<>();
+        HashMap<String,String> sessionInfo=  new LinkedHashMap();
+        StringBuffer sb;
 
         for (int i=0;i<sessions.size();i++){
-            sessionInfo.put("Workout "+String.valueOf(sessions.get(i).getId()),sessions.get(i).getDate_session()+"\n"+sessions.get(i).getMovements());
+            sb= new StringBuffer(sessions.get(i).getMovements());
+            sb.deleteCharAt(sb.length()-1);
+            sessionInfo.put("Workout "+String.valueOf(sessions.get(i).getId()),sessions.get(i).getDate_session()+"\n"+sb);
         }
 
         List<HashMap<String,String>> ListItems = new ArrayList<>();

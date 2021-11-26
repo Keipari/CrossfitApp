@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lavv.crossfitapp.databinding.ActivityDetailsBinding;
 
-import java.io.Serializable;
 
 public class SessionDetailsActivity extends AppCompatActivity {
     private ActivityDetailsBinding binding;
@@ -32,10 +31,13 @@ public class SessionDetailsActivity extends AppCompatActivity {
         binding.setExercises.setText(cadena);
         Log.i("M", cadena);
         //Date
-        String[] datetime = session.getDate_session().split(" ");
-        binding.date.setText(datetime[0]);
-        binding.time.setText(datetime[1]);
-        Log.i("fecha", datetime[0]+datetime[1]);
+        if (session.getDate_session().contains(" ")){
+            String[] datetime = session.getDate_session().split(" ");
+            binding.date.setText(datetime[0]);
+            binding.time.setText(datetime[1]);
+            Log.i("fecha", datetime[0]+datetime[1]);
+        }
+
         //Coments
         binding.setComments.setText(session.getComment());
         Log.i("comentario", session.getComment());

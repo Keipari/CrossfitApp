@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -57,7 +58,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         List<Session> returnList = new ArrayList<>();
 
         // get data from the database
-        String queryString = "SELECT * FROM SESSION;";
+        String queryString = "SELECT * FROM SESSION ORDER BY DATE_SESSION DESC;";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString,null);
@@ -84,7 +85,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public Session getSessionById(char id_s){
+    public Session getSessionById(String id_s){
         Session session;
 
         // get data from the database
@@ -116,31 +117,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return session;
     }
 
-    public int getStatisticsCount(String month, String movement){
-        month="%-"+month+"-%";
-        movement="%"+movement+"%";
-        int count=0;
-
-        // get data from the database
-        String queryString = "SELECT COUNT(ID_SESSION) FROM SESSION WHERE DATE_SESSION LIKE '"+month+"' AND MOVEMENTS LIKE '"+movement+"';";
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if(cursor.moveToFirst()){
-            //loop into the results
-            do{
-                count= cursor.getInt(0);
-
-            }while(cursor.moveToNext());
-
-        }
-        cursor.close();
-        db.close();
-
-        return count;
-    }
-
     public List<Session> getSessionsByMonthMovements(String month, String movement){
         List<Session> returnList = new ArrayList<>();
         month="%-"+month+"-%";
@@ -148,7 +124,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         int count=0;
 
         // get data from the database
-        String queryString = "SELECT * FROM SESSION WHERE DATE_SESSION LIKE '"+month+"' AND MOVEMENTS LIKE '"+movement+"';";
+        String queryString = "SELECT * FROM SESSION WHERE DATE_SESSION LIKE '"+month+"' AND MOVEMENTS LIKE '"+movement+"' ORDER BY DATE_SESSION DESC;";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString,null);

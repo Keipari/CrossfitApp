@@ -27,8 +27,12 @@ public class BinnacleActivity extends AppCompatActivity {
     final Calendar calendar = Calendar.getInstance();
     private final int ACTUAL_HOUR = calendar.get(Calendar.HOUR_OF_DAY), ACTUAL_MINUTE = calendar.get(Calendar.MINUTE);
     private final int ACTUAL_DAY = calendar.get(Calendar.DAY_OF_MONTH), ACTUAL_MONTH = calendar.get(Calendar.MONTH), ACTUAL_YEAR = calendar.get(Calendar.YEAR);
-    private int nHour, nMinute, nDay, nMonth, nYear;
-    private String comments;
+    private int nHour = ACTUAL_HOUR;
+    private int nMinute = ACTUAL_MINUTE;
+    private int nDay = ACTUAL_DAY;
+    private int nMonth = ACTUAL_MONTH;
+    private int nYear = ACTUAL_YEAR;
+    private String comments="";
     private boolean[] checkExercises;
     private String  movements_strigs[]={"Air Squat","Front Squat","Overhead Squat","Shoulder Press","Push Press","Push Jerk","Deadlift"};
 
@@ -51,34 +55,39 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if((nYear <= ACTUAL_YEAR && nMonth <= ACTUAL_MONTH && nDay <= ACTUAL_DAY)||(nYear <= ACTUAL_YEAR && nMonth < ACTUAL_MONTH)||(nYear < ACTUAL_YEAR)) {
-                    //Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_SHORT).show();
-                    String date_s=String.valueOf(nYear)+"-"+String.valueOf(nMonth+1)+"-"+String.valueOf(nDay)+" "+String.valueOf(nHour)+":"+String.valueOf(nMinute)+":00";
-                    String movements="";
-                    for( int i=0;i<checkExercises.length;i++){
-                        Log.i("data",String.valueOf(checkExercises[i]));
-                        if(checkExercises[i]==true){
-                            movements=movements+movements_strigs[i]+",";
+                if(((nYear <= ACTUAL_YEAR && nMonth <= ACTUAL_MONTH && nDay <= ACTUAL_DAY)||(nYear <= ACTUAL_YEAR && nMonth < ACTUAL_MONTH)||(nYear < ACTUAL_YEAR))) {
+                    if(hasMovementsChecked(checkExercises)){
+                        String date_s=String.valueOf(nYear)+"-"+String.valueOf(nMonth+1)+"-"+String.valueOf(nDay)+" "+String.valueOf(nHour)+":"+String.valueOf(nMinute)+":00";
+                        String movements="";
+                        for( int i=0;i<checkExercises.length;i++){
+                            Log.i("data",String.valueOf(checkExercises[i]));
+                            if(checkExercises[i]==true){
+                                movements=movements+movements_strigs[i]+",";
+                            }
                         }
+                        Session sessionModel;
+                        try{
+                            sessionModel= new Session(-1, date_s, comments,movements);
+
+                        }catch (Exception e){
+                            Toast.makeText(getApplicationContext(),"Error creating session",Toast.LENGTH_SHORT).show();
+                            sessionModel= new Session(-1, "YYYY-MM-DD HH:MM:SS", "comments dummy","No movements");
+                        }
+
+                        DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
+                        boolean response= dataBaseHelper.addSession(sessionModel);
+                        Toast.makeText(getApplicationContext(),"Success="+response,Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Select movements", Toast.LENGTH_SHORT).show();
                     }
-                    Session sessionModel;
-                    try{
-                        sessionModel= new Session(-1, date_s, comments,movements);
-
-                    }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),"Error creating session",Toast.LENGTH_SHORT).show();
-                        sessionModel= new Session(-1, "YYYY-MM-DD HH:MM:SS", "comments dummy","No movements");
-                    }
-
-                    DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
-                    boolean response= dataBaseHelper.addSession(sessionModel);
-                    Toast.makeText(getApplicationContext(),"Success="+response,Toast.LENGTH_SHORT).show();
-
+                    
                 }else{
                     Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 
         /*
         This button helps the user to return to the Main Menu
@@ -249,6 +258,13 @@ public class BinnacleActivity extends AppCompatActivity {
         }else{
             checkExercises = new boolean[]{false, false, false, false, false, false, false};
         }
+    }
+    public static boolean hasMovementsChecked(boolean[] array)
+    {
+        for(boolean value: array){
+            if(value){ return true;}
+        }
+        return false;
     }
 
     private void setupFullScreen() {

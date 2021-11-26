@@ -3,6 +3,7 @@ package com.lavv.crossfitapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -16,15 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lavv.crossfitapp.databinding.ActivityBinnacleshowBinding;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BinnacleShowActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ActivityBinnacleshowBinding binding;
-    private HashMap<String,String> sessionInfo= new HashMap<>();
+    private HashMap<String,String> sessionInfo=  new LinkedHashMap();;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +58,22 @@ public class BinnacleShowActivity extends AppCompatActivity implements AdapterVi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         DataBaseHelper dataBaseHelper= new DataBaseHelper(getApplicationContext());
         String sessioninfo = adapterView.getItemAtPosition(i).toString();
-        Session session = dataBaseHelper.getSessionById(sessioninfo.charAt(sessioninfo.length()-2));
+        String id = sessioninfo.substring(sessioninfo.lastIndexOf(" ") + 1);
+        StringBuffer id_b= new StringBuffer(id);
+        id_b.deleteCharAt(id_b.length()-1);
+        Session session = dataBaseHelper.getSessionById(String.valueOf(id_b));
         Intent intent = new Intent(getApplicationContext(), SessionDetailsActivity.class);
         intent.putExtra("session", session);
         startActivity(intent);
     }
 
     public void fillLayout(List<Session> sessions){
+        String cadena="";
         for (int i=0;i<sessions.size();i++){
             sessionInfo.put("Workout "+String.valueOf(sessions.get(i).getId()),sessions.get(i).getDate_session());
+            cadena= cadena+sessions.get(i).getDate_session()+" ";
         }
-
+        Log.i("medir",sessionInfo.toString());
         List<HashMap<String,String>> ListItems = new ArrayList<>();
 
         SimpleAdapter adapter= new SimpleAdapter(getApplicationContext(),ListItems,R.layout.list_item,
@@ -71,6 +81,7 @@ public class BinnacleShowActivity extends AppCompatActivity implements AdapterVi
                 new int[]{R.id.text1,R.id.text2});
 
         Iterator it= sessionInfo.entrySet().iterator();
+
 
         while (it.hasNext()){
             HashMap<String,String> resultMap = new HashMap<>();
@@ -91,6 +102,5 @@ public class BinnacleShowActivity extends AppCompatActivity implements AdapterVi
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
-
 
 }
