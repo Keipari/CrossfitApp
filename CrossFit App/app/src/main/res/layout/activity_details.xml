@@ -8,6 +8,20 @@
 
 
     <ImageView
+        android:id="@+id/goToMainMenu"
+        android:layout_width="141dp"
+        android:layout_height="57dp"
+        android:background="@color/black"
+        android:contentDescription="@string/home_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline58"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline59"
+        app:layout_constraintWidth_percent="0.375"
+        app:srcCompat="@drawable/logo_home" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -27,6 +41,7 @@
         android:gravity="center"
         android:text="@string/Exercises"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +50,13 @@
 
 
     <ScrollView
-        android:layout_width="387dp"
-        android:layout_height="136dp"
+        android:layout_width="281dp"
+        android:layout_height="96dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="#acb3bf"
         android:contentDescription="@string/show_entries"
         app:layout_constraintBottom_toTopOf="@+id/time"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +74,8 @@
             android:gravity="center"
             android:text="@string/empty"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintWidth_percent="0.95"
             tools:targetApi="o" />
@@ -68,13 +85,30 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/date"
-        android:autoSizeTextType="uniform"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline57"
         app:layout_constraintEnd_toStartOf="@+id/guideline58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline56"
+        tools:targetApi="o" />
+
+    <Button
+        android:id="@+id/toAllEntries"
+        android:layout_width="158dp"
+        android:layout_height="62dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/black"
+        android:text="@string/return_to_all_entries"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/guideline58"
+        app:layout_constraintTop_toTopOf="@+id/guideline59"
+        app:layout_constraintVertical_bias="0.681"
+        app:layout_constraintWidth_percent="0.45"
         tools:targetApi="o" />
 
     <TextView
@@ -84,6 +118,7 @@
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/time"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline58"
@@ -91,20 +126,19 @@
         tools:targetApi="o" />
 
     <ScrollView
-        android:layout_width="350dp"
-        android:layout_height="154dp"
+        android:layout_width="282dp"
+        android:layout_height="109dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="#acb3bf"
         android:contentDescription="@string/show_entries"
-        app:layout_constraintBottom_toTopOf="@+id/goToMainMenu"
+        app:layout_constraintBottom_toTopOf="@+id/guideline59"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.75"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.304"
         app:layout_constraintWidth_percent="0.675">
 
         <TextView
@@ -114,6 +148,8 @@
             android:autoSizeTextType="uniform"
             android:gravity="center"
             android:text="@string/empty"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintHeight_percent="0.225"
             app:layout_constraintWidth_percent="0.95"
             tools:targetApi="o" />
@@ -125,10 +161,10 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline61"
         app:layout_constraintEnd_toStartOf="@+id/guideline58"
         app:layout_constraintHeight_percent="0.05"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline57"
         app:layout_constraintWidth_percent="0.45"
@@ -140,7 +176,7 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline61"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.05"
@@ -157,43 +193,13 @@
         android:gravity="center"
         android:text="@string/commentsMin"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline62"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline61"
         tools:targetApi="o" />
 
-
-    <ImageView
-        android:id="@+id/goToMainMenu"
-        android:layout_width="117dp"
-        android:layout_height="45dp"
-        android:background="@color/black"
-        android:contentDescription="@string/home_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline58"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline59"
-        app:layout_constraintVertical_bias="0.607"
-        app:layout_constraintWidth_percent="0.45"
-        app:srcCompat="@drawable/logo_home" />
-
-    <Button
-        android:id="@+id/toAllEntries"
-        android:layout_width="143dp"
-        android:layout_height="51dp"
-        android:autoSizeTextType="uniform"
-        android:backgroundTint="@color/black"
-        android:text="@string/return_to_all_entries"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
-        app:layout_constraintStart_toStartOf="@+id/guideline58"
-        app:layout_constraintTop_toTopOf="@+id/guideline59"
-        app:layout_constraintWidth_percent="0.45"
-        tools:targetApi="o" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline54"

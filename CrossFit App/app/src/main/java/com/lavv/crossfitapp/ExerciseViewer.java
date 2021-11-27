@@ -1,17 +1,25 @@
+/**
+ * This Activity class of the interaction with the user when viewing the details of a specific movement/exercise.
+ * Here the display of all the information of a movement is handled.
+ * Third-party libraries were used to manage videos.
+ */
 package com.lavv.crossfitapp;
 
 import static com.lavv.crossfitapp.ExerciseSelector.TYPE_OF_EXERCISE;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import com.lavv.crossfitapp.databinding.ActivityExerciseBinding;
+import com.lavv.crossfitapp.memorylogic.AirSquat;
+import com.lavv.crossfitapp.memorylogic.Deadlift;
+import com.lavv.crossfitapp.memorylogic.FrontSquat;
+import com.lavv.crossfitapp.memorylogic.OverheadSquat;
+import com.lavv.crossfitapp.memorylogic.PushJerk;
+import com.lavv.crossfitapp.memorylogic.PushPress;
+import com.lavv.crossfitapp.memorylogic.ShoulderPress;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -30,22 +38,26 @@ public class ExerciseViewer extends AppCompatActivity {
         binding = ActivityExerciseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setupFullScreen();
+        //Getting the exercise type
         if(savedInstanceState != null){
             type = savedInstanceState.getInt(TYPE_OF_EXERCISE);
         }else{
             Intent intent = getIntent();
             type = intent.getIntExtra(TYPE_OF_EXERCISE, 0 );
         }
+        //Initializing layout
         layoutInitializer();
         youTubePlayerView = binding.ExerciseVideo;
         getLifecycle().addObserver(youTubePlayerView);
         youTubePlayerView.addYouTubePlayerListener(videoListener);
         youTubePlayerView.addFullScreenListener(fullScreenListener);
 
+        //Setting the Button listener, When this button is pressed it takes us to the main activity
         binding.goToMainMenu.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         });
+        //Setting the Button listener, When this button is pressed it takes us to the ExerciseSelector
         binding.toMovementList.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ExerciseSelector.class);
             startActivity(intent);
@@ -53,6 +65,7 @@ public class ExerciseViewer extends AppCompatActivity {
 
     }
 
+    //listener when full screen
     YouTubePlayerFullScreenListener fullScreenListener = new YouTubePlayerFullScreenListener() {
         @Override
         public void onYouTubePlayerEnterFullScreen() {
@@ -71,6 +84,7 @@ public class ExerciseViewer extends AppCompatActivity {
         }
     };
 
+    //Listener to play the video
     AbstractYouTubePlayerListener videoListener = new AbstractYouTubePlayerListener(){
         @Override
         public void onReady(YouTubePlayer youTubePlayer) {
@@ -97,6 +111,7 @@ public class ExerciseViewer extends AppCompatActivity {
         }
     };
 
+    //Depending on the case provided, it shows the information of the selected exercise
     private void layoutInitializer(){
         switch(type){
             case 0:
@@ -146,6 +161,7 @@ public class ExerciseViewer extends AppCompatActivity {
         }
     }
 
+    //Set full screen
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(
@@ -155,6 +171,10 @@ public class ExerciseViewer extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
+    /**
+     *  Here we store the data from this state
+     * @param outState Bundle object used to store the data
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(TYPE_OF_EXERCISE, type);

@@ -153,7 +153,8 @@
             app:layout_constraintHeight_percent="0.3"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
-            app:layout_constraintWidth_percent="0.175" />
+            app:layout_constraintWidth_percent="0.175"
+            tools:targetApi="o" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Deadlift"
@@ -168,7 +169,8 @@
             app:layout_constraintHeight_percent="0.3"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toTopOf="@+id/guideline12"
-            app:layout_constraintWidth_percent="0.175" />
+            app:layout_constraintWidth_percent="0.175"
+            tools:targetApi="o" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"

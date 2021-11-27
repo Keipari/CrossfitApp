@@ -6,6 +6,19 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/goToMainMenu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:contentDescription="@string/home_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.375"
+        app:srcCompat="@drawable/logo_home" />
+
+    <ImageView
         android:id="@+id/Home"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -77,25 +90,10 @@
         android:id="@+id/listsessions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/goToMainMenu"
+        app:layout_constraintBottom_toTopOf="@+id/guideline39"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/count" />
-
-    <ImageView
-        android:id="@+id/goToMainMenu"
-        android:layout_width="92dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        android:contentDescription="@string/home_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline40"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline39"
-        app:layout_constraintWidth_percent="0.3"
-        app:srcCompat="@drawable/logo_home" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline35"

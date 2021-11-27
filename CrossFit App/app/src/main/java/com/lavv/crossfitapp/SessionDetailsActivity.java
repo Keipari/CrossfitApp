@@ -1,3 +1,7 @@
+/**
+ * This Activity class of the interaction with the user when viewing the details of a specific session.
+ * Here the display of all the information of a session is handled.
+ */
 package com.lavv.crossfitapp;
 
 import android.content.Intent;
@@ -10,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lavv.crossfitapp.databinding.ActivityDetailsBinding;
+import com.lavv.crossfitapp.dblogic.Session;
 
 
 public class SessionDetailsActivity extends AppCompatActivity {
@@ -21,8 +26,10 @@ public class SessionDetailsActivity extends AppCompatActivity {
         binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         setupFullScreen();
         setContentView(binding.getRoot());
+        //Getting the Session object
         Session session = (Session) getIntent().getSerializableExtra("session");
-        //Movimientos
+
+        //Displaying Movements
         String[] movements_array = session.getMovements().split(",");
         String cadena="";
         for (int i =0; i<movements_array.length;i++){
@@ -30,18 +37,19 @@ public class SessionDetailsActivity extends AppCompatActivity {
         }
         binding.setExercises.setText(cadena);
         Log.i("M", cadena);
-        //Date
+        // Displaying Date
         if (session.getDate_session().contains(" ")){
             String[] datetime = session.getDate_session().split(" ");
-            binding.date.setText(datetime[0]);
-            binding.time.setText(datetime[1]);
+            binding.texttime.setText(datetime[0]);
+            binding.textdate.setText(datetime[1]);
             Log.i("fecha", datetime[0]+datetime[1]);
         }
 
-        //Coments
+        //Displaying Coments
         binding.setComments.setText(session.getComment());
         Log.i("comentario", session.getComment());
 
+        //Setting the Button listener, When this button is pressed it takes us to the main activity
         binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,8 +58,17 @@ public class SessionDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //Setting the Button listener, When this button is pressed it takes us to the BinnacleShowActivity
+        binding.toAllEntries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BinnacleShowActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    //Setting the full screen
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(

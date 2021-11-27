@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CrossFit App</string>
     <string name="your_workouts">Your Workouts</string>
-    <string name="binacle">Binacle</string>
+    <string name="Statistics">Statistics</string>
+    <string name="binacle">Binnacle</string>
     <string name="movement_guide">Movement Guide</string>
     <string name="logo">logo</string>
-    <string name="Statistics">Statistics</string>
     <string name="empty"> </string>
     <string name="Workouts">WORKOUTS</string>
     <string name="AirSquat">Air Squat</string>
@@ -16,9 +16,9 @@
     <string name="PushJerk">Push Jerk</string>
     <string name="DeadLift">Deadlift</string>
     <string name="ExerciseVideo">exercise_video</string>
-    <string name="get_time">GET TIME</string>
+    <string name="get_time">TIME</string>
     <string name="hour_min">Hour : Min</string>
-    <string name="get_date">GET DATE</string>
+    <string name="get_date">DATE</string>
     <string name="date">Date</string>
     <string name="comments">COMMENTS</string>
     <string name="write_your_session_comments">Write your session comments</string>
@@ -38,7 +38,7 @@
     <string name="return_to_main_menu">Return to Main Menu</string>
     <string name="go_to_all_entries">GO TO ALL ENTRIES</string>
     <string name="selected_entries">Selected Entries</string>
-    <string name="get_entries">Get Entries</string>
+    <string name="get_entries">Show</string>
     <string name="show_entries">Show entries</string>
     <string name="binnacle">Binnacle</string>
     <string name="go_to_data_show">Go to Data Show</string>
@@ -49,5 +49,5 @@
     <string name="Exercises">Exercises</string>
     <string name="aqu_se_ponen_los_ejercicios_hechos">aquí se ponen los ejercicios hechos</string>
     <string name="commentsMin">Comments</string>
-    <string name="return_to_all_entries">Return to all entries</string>
+    <string name="return_to_all_entries">Return</string>
 </resources>

@@ -1,3 +1,11 @@
+/**
+ *  This Activity class takes care of the interaction with the user when registering a new session.
+ *
+ *  It ensures that all registered data are valid before registering them in the database.
+ *  Likewise, this class has the ability to restore itself to a previous state using the
+ *  data stored in the bundle object.
+ */
+
 package com.lavv.crossfitapp;
 
 import android.annotation.SuppressLint;
@@ -9,9 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,6 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.lavv.crossfitapp.databinding.ActivityBinnacleBinding;
+import com.lavv.crossfitapp.dblogic.DataBaseHelper;
+import com.lavv.crossfitapp.dblogic.Session;
+
 import java.util.Calendar;
 
 public class BinnacleActivity extends AppCompatActivity {
@@ -34,7 +43,7 @@ public class BinnacleActivity extends AppCompatActivity {
     private int nYear = ACTUAL_YEAR;
     private String comments="";
     private boolean[] checkExercises;
-    private String  movements_strigs[]={"Air Squat","Front Squat","Overhead Squat","Shoulder Press","Push Press","Push Jerk","Deadlift"};
+    private String movements_strings[]={"Air Squat","Front Squat","Overhead Squat","Shoulder Press","Push Press","Push Jerk","Deadlift"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,11 +56,8 @@ public class BinnacleActivity extends AppCompatActivity {
         binding.actualD.setText(ACTUAL_DAY + "/" + (ACTUAL_MONTH + 1) + "/" + ACTUAL_YEAR);
         initializeBaseValues(savedInstanceState);
 
-        /*
-        Here we make the validation of a not later date than the actual one and after that we
-        send to the Database
-        */
 
+        //Here we make the validation of a not later date than the actual one and after that we send to the Database
         binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +68,7 @@ public class BinnacleActivity extends AppCompatActivity {
                         for( int i=0;i<checkExercises.length;i++){
                             Log.i("data",String.valueOf(checkExercises[i]));
                             if(checkExercises[i]==true){
-                                movements=movements+movements_strigs[i]+",";
+                                movements=movements+ movements_strings[i]+",";
                             }
                         }
                         Session sessionModel;
@@ -80,19 +86,15 @@ public class BinnacleActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(), "Select movements", Toast.LENGTH_SHORT).show();
                     }
-                    
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Set a Valid Date", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-
-        /*
-        This button helps the user to return to the Main Menu
-         */
-        binding.Home.setOnClickListener(new View.OnClickListener() {
+        //This button helps the user to return to the Main Menu
+        binding.goToMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -101,6 +103,8 @@ public class BinnacleActivity extends AppCompatActivity {
         });
 
 
+        //These check buttons set the value of the checkExercises array to
+        //true or false to mark which exercises were performed in the session.
         binding.AirSquatCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,6 +164,7 @@ public class BinnacleActivity extends AppCompatActivity {
             }
         });
 
+        //Here we get the time that the user enters
         binding.getTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,6 +202,7 @@ public class BinnacleActivity extends AppCompatActivity {
             }
         });
 
+        //Here we get the date that the user enters
         binding.getDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,7 +212,6 @@ public class BinnacleActivity extends AppCompatActivity {
                 int year = cldr.get(Calendar.YEAR);
 
                 //date picker dialog
-
                 DatePickerDialog datePicker = new DatePickerDialog(BinnacleActivity.this, android.R.style.Theme_Holo_Light_Dialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -228,6 +233,23 @@ public class BinnacleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to validate if the user has selected a movement, providing it with the 'checkExercises' array.
+     * @param array array of booleans
+     * @return boolean variable that tell if the given array has at least one true value
+     */
+    public static boolean hasMovementsChecked(boolean[] array)
+    {
+        for(boolean value: array){
+            if(value){ return true;}
+        }
+        return false;
+    }
+
+    /**
+     * Here we initialize the data if the savedInstanceState is not null
+     * @param savedInstanceState a bundle object that contains the saved data from a previus state
+     */
     @SuppressLint("SetTextI18n")
     private void initializeBaseValues(Bundle savedInstanceState){
         if(savedInstanceState != null){
@@ -259,14 +281,8 @@ public class BinnacleActivity extends AppCompatActivity {
             checkExercises = new boolean[]{false, false, false, false, false, false, false};
         }
     }
-    public static boolean hasMovementsChecked(boolean[] array)
-    {
-        for(boolean value: array){
-            if(value){ return true;}
-        }
-        return false;
-    }
 
+    // This method is used to set the full screen
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(
@@ -277,10 +293,9 @@ public class BinnacleActivity extends AppCompatActivity {
     }
 
 
-    /*
-    This sets the booleans in the checkExercises Boolean Array to true of false if the checkbox
-    that matches with the specified exercise is checked or not
-    */
+
+    //This sets the booleans in the checkExercises Boolean Array to true of false if the checkbox
+    //that matches with the specified exercise is checked or not
     @SuppressLint("NonConstantResourceId")
     private void setBooleanChecked(int id){
         switch(id){
@@ -316,10 +331,10 @@ public class BinnacleActivity extends AppCompatActivity {
 
     }
 
-    /*
-    with this onSaveInstanceState
+    /**
+     *  Here we store the data from this state
+     * @param outState Bundle object used to store the data
      */
-
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt("hour", nHour);

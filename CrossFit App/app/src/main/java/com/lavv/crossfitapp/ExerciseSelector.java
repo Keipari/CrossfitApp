@@ -1,11 +1,13 @@
+/**
+ * This Activity class of the interaction with the user when selecting a movement/exercise
+ * to view its information
+ */
 package com.lavv.crossfitapp;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.lavv.crossfitapp.databinding.ActivityMovementBinding;
@@ -22,6 +24,11 @@ public class ExerciseSelector extends AppCompatActivity {
         binding = ActivityMovementBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setupFullScreen();
+
+        // Depending on the button pressed, an attempt will start that will take us
+        // to the ExersiceViewer activity where the information on the type of selected
+        // exercise will be displayed.
+
         binding.AirSquat.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ExerciseViewer.class);
             intent.putExtra(TYPE_OF_EXERCISE, 0);
@@ -71,6 +78,7 @@ public class ExerciseSelector extends AppCompatActivity {
 
     }
 
+    //Setting full screen
     private void setupFullScreen() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(

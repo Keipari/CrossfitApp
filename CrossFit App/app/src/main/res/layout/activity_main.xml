@@ -50,7 +50,7 @@
         android:backgroundTint="#6A6A6A"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="Binacle"
+        android:text="Binnacle"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
