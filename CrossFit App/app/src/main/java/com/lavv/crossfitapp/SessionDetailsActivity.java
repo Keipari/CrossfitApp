@@ -40,8 +40,8 @@ public class SessionDetailsActivity extends AppCompatActivity {
         // Displaying Date
         if (session.getDate_session().contains(" ")){
             String[] datetime = session.getDate_session().split(" ");
-            binding.texttime.setText(datetime[0]);
-            binding.textdate.setText(datetime[1]);
+            binding.textdate.setText(datetime[0]);
+            binding.texttime.setText(datetime[1]);
             Log.i("fecha", datetime[0]+datetime[1]);
         }
 
